@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { format } from "date-fns";
 import "./style.css";
 
