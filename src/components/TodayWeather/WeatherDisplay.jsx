@@ -5,21 +5,6 @@ import "./style.css";
 const WeatherDisplay = ({ weatherInfo }) => {
   const { place, weather, timestamp } = weatherInfo;
 
-  const imageCloud = useMemo(() => {
-    if (!weather) {
-      return "";
-    }
-
-    const { main } = weather.weather[0];
-    switch (main) {
-      case "Clear":
-        return "../../assets/sun.png";
-      case "Clouds":
-      default:
-        return "../../assets/cloud.png";
-    }
-  }, [weather]);
-
   return (
     <>
       <div className="weather-container ">
