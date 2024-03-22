@@ -1,14 +1,14 @@
 import "./App.css";
 import TodayWeather from "./components/TodayWeather";
 import SearchHistory from "./components/SearchHistory";
-import { createContext, useState } from "react";
+import ThemeSwitcher from "./components/ThemeSwitcher";
+import SearchBox from "./components/SearchBox";
 
+import { useState } from "react";
 const MAX_HISTORY_LENGTH = 7;
 
-const AppContext = createContext();
-
 function App() {
-  const [weatherInfo, setWeatherInfo] = useState(null);
+  const [place, setPlace] = useState(null);
   const [historyList, setHistoryList] = useState([]);
 
   const recordSearchHistory = (searchQuery) => {
@@ -21,17 +21,15 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider
-        value={{
-          weatherInfo,
-          setWeatherInfo,
-          historyList,
-          recordSearchHistory,
-        }}
-      >
-        <TodayWeather onSearch={recordSearchHistory}></TodayWeather>
+      <ThemeSwitcher></ThemeSwitcher>
+      <SearchBox
+        onSearch={recordSearchHistory}
+        foundPlace={(place) => setPlace(place)}
+      ></SearchBox>
+      <div className="result-panel">
+        <TodayWeather place={place}></TodayWeather>
         <SearchHistory historyList={historyList}></SearchHistory>
-      </AppContext.Provider>
+      </div>
     </div>
   );
 }

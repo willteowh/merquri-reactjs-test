@@ -1,0 +1,93 @@
+.weather-container {
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  display: flex;
+}
+
+.weather-container::before {
+  content: ""; /* Required for pseudo-elements */
+  position: absolute; /* Position the pseudo-element */
+  top: -100px; /* Position at the top of the container */
+  right: 0; /* Position at the right of the container */
+  background-image: url("../../assets/sun.png");
+  width: 250px; /* Set the width of the pseudo-element */
+  height: 250px; /* Set the height of the pseudo-element */
+  background-size: contain; /* Scale the background image to fit the dimensions of the pseudo-element */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
+
+.weather-title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+.weather-figure {
+  display: flex;
+  flex-direction: column;
+}
+
+.big-temperature-display {
+  font-size: 6em;
+  display: block;
+  color: rgb(var(--font-color-positive));
+  font-weight: 700;
+  line-height: 1;
+}
+
+.flexbox {
+  display: flex;
+}
+
+.weather-image {
+  width: 200px;
+  height: 200px;
+
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  top: -10%;
+
+  background-size: cover; /* Adjust background image size */
+  background-position: right center; /* Adjust background image position */
+}
+
+.weather-image.sun {
+  background-image: url("../../assets/sun.png");
+}
+
+.weather-image.cloud {
+  background-image: url("../../assets/cloud.png");
+}
+
+.weather-figure-sub {
+  display: flex;
+  align-items: flex-end;
+}
+
+.caption-mobile-stack {
+  display: flex;
+  flex-direction: row;
+}
+
+.caption-item {
+  margin-left: 20px;
+}
+
+/* mobiel css */
+@media only screen and (max-width: 600px) {
+  .weather-container::before {
+    top: -45%; /* Position at the top of the container */
+    width: 150px; /* Set the width of the pseudo-element */
+    height: 150px; /* Set the height of the pseudo-element */
+  }
+
+  .caption-mobile-stack {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: right;
+  }
+}

@@ -1,14 +1,15 @@
-import { useState } from "react";
-import SearchPlace from "./SearchPlace";
+import { useEffect, useState } from "react";
 import WeatherDisplay from "./WeatherDisplay";
 import { WEATHER_API_URL } from "../../api";
 
-const TodayWeather = ({ onSearch }) => {
+const TodayWeather = ({ place }) => {
   const [weatherInfo, setWeatherInfo] = useState(null);
 
-  const fetchWeather = async (place) => {
-    // TODO: FETCH from weather api
+  useEffect(() => {
+    fetchWeather(place);
+  }, [place]);
 
+  const fetchWeather = async (place) => {
     // TODO: fetch from api
     try {
       let response = await (
@@ -25,26 +26,15 @@ const TodayWeather = ({ onSearch }) => {
         timestamp: new Date(),
       };
 
-      // TODO: display Weahter info
+      // set into weatherInfo
       setWeatherInfo(weatherInfo);
-
-      // also, record Search History
-      onSearch({
-        place: { ...place },
-        timestamp: new Date(),
-      });
     } catch (error) {
       console.error(error);
     }
-
-    // set into weatherInfo
   };
 
   return (
     <>
-      <h1>Today's Weather</h1>
-      <hr></hr>
-      <SearchPlace foundPlace={(place) => fetchWeather(place)}></SearchPlace>
       {weatherInfo && (
         <WeatherDisplay weatherInfo={weatherInfo}></WeatherDisplay>
       )}
