@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { GEO_API_URL } from "../../api";
 import SearchIcon from "@mui/icons-material/Search";
 import "./style.css";
+import { AppContext } from "../../App";
 
 const emptySearchForm = {
   city: "",
   country: "",
 };
 
-const SearchBox = ({ onSearch, foundPlace }) => {
+const SearchComponent = () => {
+  const { setPlace, addRecentSearch } = useContext(AppContext);
   const [searchForm, setSearchForm] = useState(emptySearchForm);
 
-  const handleSearch = async () => {
+  const doSearch = async () => {
     console.log({ ...searchForm });
 
     // validation
@@ -34,10 +36,10 @@ const SearchBox = ({ onSearch, foundPlace }) => {
       const place = response[0];
 
       // TODO: display Weahter info
-      foundPlace(place);
+      setPlace(place);
 
       // also, record Search History
-      onSearch({
+      addRecentSearch({
         place: { ...place },
         timestamp: new Date(),
       });
@@ -48,7 +50,7 @@ const SearchBox = ({ onSearch, foundPlace }) => {
 
   const handleInput = (event) => {
     if (event.key === "Enter") {
-      handleSearch();
+      doSearch();
     }
 
     setSearchForm((prev) => {
@@ -67,13 +69,13 @@ const SearchBox = ({ onSearch, foundPlace }) => {
         name="city"
         placeholder="Type to search for weather. Eg.: Singapore, Kuala Lumpur"
         value={searchForm.city}
-        onInput={handleInput}
+        onInput={(event) => handleInput(event)}
       ></input>
-      <button className="btn btn-square" onClick={handleSearch}>
+      <button className="btn btn-square" onClick={doSearch}>
         <SearchIcon></SearchIcon>
       </button>
     </div>
   );
 };
 
-export default SearchBox;
+export default SearchComponent;

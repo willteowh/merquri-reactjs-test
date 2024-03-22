@@ -1,7 +1,10 @@
 import { format } from "date-fns";
 import "./style.css";
+import { useContext } from "react";
+import { AppContext } from "../../App";
 
-const WeatherDisplay = ({ weatherInfo }) => {
+const WeatherDisplay = () => {
+  const { weatherInfo } = useContext(AppContext);
   const { place, weather, timestamp } = weatherInfo;
 
   return (
