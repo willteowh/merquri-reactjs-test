@@ -8,6 +8,7 @@ import {
   TempTitle,
   FigureContainer,
 } from "./styled";
+import WeatherIcon from "./WeatherIcon";
 
 const WeatherDisplay = () => {
   const { searchResult } = useContext(AppContext);
@@ -19,6 +20,9 @@ const WeatherDisplay = () => {
 
   return (
     <WeatherContainer>
+      {weatherInfo?.weather?.[0] && (
+        <WeatherIcon data={weatherInfo?.weather?.[0]}></WeatherIcon>
+      )}
       <TempContainer>
         <TempTitle>Today's Weather</TempTitle>
         <TempDisplay>{formatTemperature(weatherInfo?.main?.temp)}°</TempDisplay>
