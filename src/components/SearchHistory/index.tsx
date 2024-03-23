@@ -3,8 +3,15 @@ import { AppContext } from "../../App";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { format } from "date-fns";
-import "./style.css";
 import { searchQueryType } from "../../api/types";
+import { RoundedButton } from "../../styled/Button.styled";
+import {
+  Heading,
+  SearchHistoryContainer,
+  ItemRow,
+  ItemLabel,
+  ItemAction,
+} from "./styled";
 
 const SearchHistory = () => {
   const { recentSearches, setRecentSearches, setPlace } =
@@ -25,37 +32,31 @@ const SearchHistory = () => {
   };
 
   return (
-    <div className="search-history-container">
-      <h2 className="container-title">Search History</h2>
+    <SearchHistoryContainer>
+      <Heading>Search History</Heading>
       {recentSearches.map((history, index) => {
         return (
-          <div className="history-row" key={index}>
-            <div className="history-row-label">
+          <ItemRow key={index}>
+            <ItemLabel>
               <span>
                 {history.place.name}, {history.place.country}
               </span>
-              <span className="caption">
+              <span className="font-smaller">
                 {format(history.timestamp, "dd-MM-yyyy hh:mmaaa")}
               </span>
-            </div>
-            <div className="history-row-action">
-              <button
-                className="btn btn-rounded "
-                onClick={() => handleSearchAgain(history)}
-              >
+            </ItemLabel>
+            <ItemAction>
+              <RoundedButton onClick={() => handleSearchAgain(history)}>
                 <SearchIcon></SearchIcon>
-              </button>
-              <button
-                className="btn btn-rounded "
-                onClick={() => handleDelete(index)}
-              >
+              </RoundedButton>
+              <RoundedButton onClick={() => handleDelete(index)}>
                 <DeleteIcon></DeleteIcon>
-              </button>
-            </div>
-          </div>
+              </RoundedButton>
+            </ItemAction>
+          </ItemRow>
         );
       })}
-    </div>
+    </SearchHistoryContainer>
   );
 };
 

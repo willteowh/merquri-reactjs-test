@@ -9,8 +9,10 @@ export interface Theme {
   };
   shadedColor: string;
   shadedColor3: string;
+  shadedColor4: string;
   shadedBorder: string;
   fontColor: {
+    default: string;
     primary: string;
     secondary: string;
     positive: string;
@@ -24,10 +26,12 @@ export const lightTheme: Theme = {
     color1: "#fefefe",
     color2: "#fefefe",
   },
-  shadedColor: "rgba(255,255,255,0.2)",
-  shadedColor3: "rgba(255,255,255,0.3)",
-  shadedBorder: "1px solid rgba(var(--backdrop-color), 0.5);",
+  shadedColor: "rgba(255, 255, 255, 0.2)",
+  shadedColor3: "rgba(255, 255, 255, 0.3)",
+  shadedColor4: "rgba(255, 255, 255, 0.4)",
+  shadedBorder: "1px solid rgba(255, 255, 255, 0.5);",
   fontColor: {
+    default: "#000000",
     primary: "#ffffff",
     secondary: "rgb(102, 102, 102)",
     positive: "rgb(108, 64, 181)",
@@ -40,10 +44,12 @@ export const darkTheme: Theme = {
     color1: "#010101",
     color2: "#010101",
   },
-  shadedColor: "rgba(0,0,0,0.2)",
-  shadedColor3: "rgba(0,0,0,0.3)",
+  shadedColor: "rgba(0, 0, 0, 0.2)",
+  shadedColor3: "rgba(0, 0, 0, 0.3)",
+  shadedColor4: "rgba(0, 0, 0, 0.4)",
   shadedBorder: "none",
   fontColor: {
+    default: "#dadada",
     primary: "#dadada",
     secondary: "#ffffff",
     positive: "#ffffff",

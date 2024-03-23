@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { Theme } from "./theme";
 
 declare module "styled-components" {
@@ -14,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: "Noto Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    color: ${({ theme }) => theme.fontColor.default}
   }
 
   body {
@@ -26,8 +28,33 @@ export const GlobalStyles = createGlobalStyle`
 
   #root {
     width: 100%;
-    max-width: 900px;
+    max-width: 800px;
     margin: auto 0px;
     padding: 2rem 1rem;
   }
+
+  input{
+  line-height: 1.5;
+  outline: none;
+  }
+
+  /* some minor styling */
+    .font-bold {
+    font-weight: 700;
+    }
+
+    .font-smaller{
+        font-size: smaller;
+    }
+
+    .font-color-primary{
+        color: ${({ theme }) => theme.fontColor.primary}
+    }
+    .font-color-secondary{
+        color: ${({ theme }) => theme.fontColor.secondary}
+    }
+    .font-color-positive{
+        color: ${({ theme }) => theme.fontColor.positive}
+    }
+
 `;

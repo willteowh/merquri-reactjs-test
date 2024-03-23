@@ -1,7 +1,13 @@
 import { useContext } from "react";
 import { AppContext } from "../../App";
 import { format } from "date-fns";
-import "./style.css";
+import {
+  WeatherContainer,
+  TempContainer,
+  TempDisplay,
+  TempTitle,
+  FigureContainer,
+} from "./styled";
 
 const WeatherDisplay = () => {
   const { searchResult } = useContext(AppContext);
@@ -12,28 +18,30 @@ const WeatherDisplay = () => {
     format(dateObject, "dd-MM-yyyy hh:mmaaa");
 
   return (
-    <div className="weather-container">
-      <div className="weather-temperature">
-        <h2 className="weather-title">Today's Weather</h2>
-        <span className="big-temperature-display">
-          {formatTemperature(weatherInfo?.main?.temp)}
-          <sup>o</sup>
-        </span>
+    <WeatherContainer>
+      <TempContainer>
+        <TempTitle>Today's Weather</TempTitle>
+        <TempDisplay>{formatTemperature(weatherInfo?.main?.temp)}°</TempDisplay>
         <span>
-          H: {formatTemperature(weatherInfo?.main?.temp_min)}
-          <sup>o</sup> L: {formatTemperature(weatherInfo?.main?.temp_max)}
-          <sup>o</sup>
+          H: {formatTemperature(weatherInfo?.main?.temp_min)}° L:{" "}
+          {formatTemperature(weatherInfo?.main?.temp_max)}°
         </span>
         <span className="font-color-secondary font-bold">
           {place?.name}, {place?.country}
         </span>
-      </div>
-      <div className="weather-figure-sub">
-        <span className="">{timestamp && formatDatetime(timestamp)}</span>
-        <span className="">Humidity: {weatherInfo?.main?.humidity}%</span>
-        <span className="">{weatherInfo?.weather?.[0]?.main}</span>
-      </div>
-    </div>
+      </TempContainer>
+      <FigureContainer>
+        <span className="font-color-secondary">
+          {timestamp && formatDatetime(timestamp)}
+        </span>
+        <span className="font-color-secondary">
+          Humidity: {weatherInfo?.main?.humidity}%
+        </span>
+        <span className="font-color-secondary ">
+          {weatherInfo?.weather?.[0]?.main}
+        </span>
+      </FigureContainer>
+    </WeatherContainer>
   );
 };
 
