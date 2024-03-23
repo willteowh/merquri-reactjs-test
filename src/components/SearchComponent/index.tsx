@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../AppProvider";
 import { fetchLocation } from "../../api";
 import { SearchContainer, SearchInput } from "./styled";
 import { SearchButton } from "./SearchButton";

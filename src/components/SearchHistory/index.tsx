@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../AppProvider";
 import HistoryRow from "./HistoryRow";
 import { Heading, SearchHistoryContainer } from "./styled";
 

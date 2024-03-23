@@ -15,7 +15,7 @@ type WeatherIconProps = {
 
 const WeatherIcon = ({ data }: WeatherIconProps) => {
   let Icon;
-  console.log(data);
+
   switch (data.main) {
     // Clear
     case "Clear":

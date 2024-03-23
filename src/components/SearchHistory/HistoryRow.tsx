@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { searchQueryType } from "../../types";
 import { RoundedButton } from "../../styled/Button.styled";
 import { ItemRow, ItemLabel, Text, Caption, ItemAction } from "./styled";
-import { AppContext } from "../../App";
+import { AppContext } from "../../AppProvider";
 
 type HistoryRowProps = {
   key: number;
@@ -23,6 +23,7 @@ const HistoryRow = ({ data, key }: HistoryRowProps) => {
       const { place } = data;
       setPlace(place);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [data]
   );
 
@@ -34,6 +35,7 @@ const HistoryRow = ({ data, key }: HistoryRowProps) => {
       );
       setRecentSearches(updatedSearches);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [key]
   );
 
