@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "../../App";
 import { GEO_API_URL } from "../../api";
 import SearchIcon from "@mui/icons-material/Search";
+import { Button } from "../../styled/Button.styled";
 import "./style.css";
 
 const emptySearchForm = {
@@ -79,9 +80,9 @@ const SearchComponent = () => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       ></input>
-      <button className="btn btn-square" onClick={doSearch}>
+      <Button onClick={doSearch}>
         <SearchIcon></SearchIcon>
-      </button>
+      </Button>
     </div>
   );
 };

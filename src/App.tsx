@@ -1,9 +1,14 @@
-import "./App.css";
+import { createContext, useState, useEffect } from "react";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import SearchComponent from "./components/SearchComponent";
 import WeatherDisplay from "./components/WeatherDisplay";
 import SearchHistory from "./components/SearchHistory";
-import { createContext, useState, useEffect } from "react";
+
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./app.styled";
+import { darkTheme, lightTheme } from "./theme";
+import { StyledDisplay } from "./styled/Container.styled";
+
 import { WEATHER_API_URL } from "./api";
 import { searchQueryType, searchResultType, placeType } from "./api/types";
 
@@ -29,6 +34,12 @@ export const AppContext = createContext<AppContextType>({
 });
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   const [place, setPlace] = useState<placeType | null>(null);
   const [searchResult, setSearchResult] = useState<searchResultType | null>(
     null
@@ -77,8 +88,12 @@ function App() {
   }, [place]);
 
   return (
-    <div className="App">
-      <ThemeSwitcher></ThemeSwitcher>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <ThemeSwitcher
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
+      ></ThemeSwitcher>
       <AppContext.Provider
         value={{
           place,
@@ -92,13 +107,13 @@ function App() {
       >
         <SearchComponent></SearchComponent>
         {(searchResult || recentSearches.length > 0) && (
-          <div className="result-panel">
+          <StyledDisplay>
             {searchResult && <WeatherDisplay></WeatherDisplay>}
             {recentSearches.length > 0 && <SearchHistory></SearchHistory>}
-          </div>
+          </StyledDisplay>
         )}
       </AppContext.Provider>
-    </div>
+    </ThemeProvider>
   );
 }
 

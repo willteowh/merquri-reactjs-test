@@ -1,43 +1,32 @@
-import React, { useState, useLayoutEffect } from "react";
-import { Fab } from "@mui/material";
 import DarkModeTwoToneIcon from "@mui/icons-material/DarkModeTwoTone";
 import LightModeTwoToneIcon from "@mui/icons-material/LightModeTwoTone";
-import "./style.css"; // for ES6 modules
+import { RoundedButton } from "../../styled/Button.styled";
+import { FloatingContainer } from "./styled";
 
-const ThemeSwitcher = () => {
-  const [isDark, setIsDark] = useState(false);
+type Props = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+};
 
-  const toggleIsDark = () => {
-    setIsDark(!isDark);
-  };
-
+const ThemeSwitcher = ({ darkMode, toggleDarkMode }: Props) => {
   // TODO: add localstorage to persists state
   // TODO: add prefers-color-scheme during initialization
 
-  //   TODO: there's still white screen even using useLayoutEffect
-  useLayoutEffect(() => {
-    if (isDark) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-  }, [isDark]);
-
+  // TODO: there's still white screen even using useLayoutEffect
   return (
-    <div className="fab-container">
-      <Fab
-        color={isDark ? "primary" : "secondary"}
-        className="float-bottom-right"
-        onClick={toggleIsDark}
-        aria-label="Dark mode toggle"
+    <FloatingContainer>
+      <RoundedButton
+        //   TODO
+        // color={darkMode ? "primary" : "secondary"}
+        onClick={toggleDarkMode}
       >
-        {isDark ? (
+        {darkMode ? (
           <DarkModeTwoToneIcon></DarkModeTwoToneIcon>
         ) : (
           <LightModeTwoToneIcon></LightModeTwoToneIcon>
         )}
-      </Fab>
-    </div>
+      </RoundedButton>
+    </FloatingContainer>
   );
 };
 
