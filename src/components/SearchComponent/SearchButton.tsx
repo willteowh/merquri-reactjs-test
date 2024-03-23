@@ -1,10 +1,10 @@
 import { StyledButton } from "./styled";
 import SearchIcon from "@mui/icons-material/Search";
 
-type SearchButtonProps = {
+interface SearchButtonProps {
   onClick: () => void;
   isSearching: boolean;
-};
+}
 
 export const SearchButton = ({ onClick, isSearching }: SearchButtonProps) => {
   return (

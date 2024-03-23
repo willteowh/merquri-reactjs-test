@@ -54,7 +54,8 @@ export const FigureContainer = styled.div`
   display: flex;
   align-items: flex-end;
   flex-grow: 1;
-  justify-content: space-between;
+  justify-content: flex-end;
+  column-gap: 10%;
 
   @media only screen and (max-width: 600px) {
     display: flex;

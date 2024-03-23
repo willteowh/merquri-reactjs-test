@@ -35,9 +35,11 @@ const SearchComponent = () => {
       setPlace(place);
 
       // also, record Search History
+      let now = new Date();
       addRecentSearch({
+        id: now.valueOf(),
+        timestamp: now,
         place: { ...place },
-        timestamp: new Date(),
       });
 
       // empty search and message

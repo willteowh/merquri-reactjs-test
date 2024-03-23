@@ -8,36 +8,33 @@ import { RoundedButton } from "../../styled/Button.styled";
 import { ItemRow, ItemLabel, Text, Caption, ItemAction } from "./styled";
 import { AppContext } from "../../AppProvider";
 
-type HistoryRowProps = {
-  key: number;
+interface HistoryRowProps {
+  index: number;
   data: searchQueryType;
-};
+}
 
-const HistoryRow = ({ data, key }: HistoryRowProps) => {
+const HistoryRow = ({ data, index }: HistoryRowProps) => {
   const { recentSearches, setRecentSearches, setPlace } =
     useContext(AppContext);
 
   const handleSearchAgain = useCallback(
-    (data: searchQueryType) => {
+    () => {
       console.log("handleSearchAgain");
       const { place } = data;
+      console.log(place);
       setPlace(place);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data]
   );
 
-  const handleDelete = useCallback(
-    (key: number) => {
-      console.log("handleDelete");
-      const updatedSearches: searchQueryType[] = recentSearches.filter(
-        (_, i) => i !== key
-      );
-      setRecentSearches(updatedSearches);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [key]
-  );
+  const handleDelete = () => {
+    console.log("handleDelete");
+    const updatedSearches: searchQueryType[] = recentSearches.filter(
+      (row) => row.id !== index
+    );
+    setRecentSearches(updatedSearches);
+  };
 
   return (
     <ItemRow>
@@ -48,10 +45,10 @@ const HistoryRow = ({ data, key }: HistoryRowProps) => {
         <Caption>{format(data.timestamp, "dd-MM-yyyy hh:mmaaa")}</Caption>
       </ItemLabel>
       <ItemAction>
-        <RoundedButton onClick={() => handleSearchAgain(data)}>
+        <RoundedButton onClick={handleSearchAgain}>
           <SearchIcon></SearchIcon>
         </RoundedButton>
-        <RoundedButton onClick={() => handleDelete(key)}>
+        <RoundedButton onClick={handleDelete}>
           <DeleteIcon></DeleteIcon>
         </RoundedButton>
       </ItemAction>

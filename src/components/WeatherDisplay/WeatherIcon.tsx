@@ -6,12 +6,12 @@ import SunnyIcon from "../../assets/sunny.png";
 import ThunderstormIcon from "../../assets/thunders.png";
 import { IconDisplay } from "./styled";
 
-type WeatherIconProps = {
+interface WeatherIconProps {
   data: {
     main: string;
     description: string;
   };
-};
+}
 
 const WeatherIcon = ({ data }: WeatherIconProps) => {
   let Icon;

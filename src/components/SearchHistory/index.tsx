@@ -10,7 +10,13 @@ const SearchHistory = () => {
     <SearchHistoryContainer>
       <Heading>Search History</Heading>
       {recentSearches.map((history, index) => {
-        return <HistoryRow data={history} key={index}></HistoryRow>;
+        return (
+          <HistoryRow
+            key={index}
+            data={history}
+            index={history.id}
+          ></HistoryRow>
+        );
       })}
     </SearchHistoryContainer>
   );

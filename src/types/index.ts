@@ -1,6 +1,7 @@
 export type searchQueryType = {
-  place: placeType;
+  id: number;
   timestamp: Date;
+  place: placeType;
 };
 
 export type placeType = {
