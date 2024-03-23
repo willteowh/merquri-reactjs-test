@@ -44,7 +44,7 @@ body.dark .result-panel {
 }
 
 .btn.btn-square {
-  border-radius: 12px;
+  border-radius: 0.5rem;
 }
 
 .btn.btn-rounded {

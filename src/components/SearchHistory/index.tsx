@@ -1,33 +1,33 @@
 import { useContext } from "react";
 import { AppContext } from "../../App";
-
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import { format } from "date-fns";
 import "./style.css";
+import { searchQueryType } from "../../api/types";
 
 const SearchHistory = () => {
-  const { searchHistory, setSearchHistory, setPlace } = useContext(AppContext);
+  const { recentSearches, setRecentSearches, setPlace } =
+    useContext(AppContext);
 
-  const handleSearchAgain = (query) => {
+  const handleSearchAgain = (query: searchQueryType) => {
     console.log("handleSearchAgain");
     const { place } = query;
-    // Perform search logic here...
-    // Once the search is completed, add the query to recent searches
     setPlace(place);
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = (index: number) => {
     console.log("handleDelete");
-    const updatedSearches = searchHistory.filter((_, i) => i !== index);
-    setSearchHistory(updatedSearches);
+    const updatedSearches: searchQueryType[] = recentSearches.filter(
+      (_, i) => i !== index
+    );
+    setRecentSearches(updatedSearches);
   };
 
   return (
     <div className="search-history-container">
       <h2 className="container-title">Search History</h2>
-      {searchHistory.map((history, index) => {
+      {recentSearches.map((history, index) => {
         return (
           <div className="history-row" key={index}>
             <div className="history-row-label">

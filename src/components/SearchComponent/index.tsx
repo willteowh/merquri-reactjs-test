@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
+import { AppContext } from "../../App";
 import { GEO_API_URL } from "../../api";
 import SearchIcon from "@mui/icons-material/Search";
 import "./style.css";
-import { AppContext } from "../../App";
 
 const emptySearchForm = {
   city: "",
@@ -35,7 +35,7 @@ const SearchComponent = () => {
 
       const place = response[0];
 
-      // TODO: display Weahter info
+      // TODO: display Weather info
       setPlace(place);
 
       // also, record Search History
@@ -48,17 +48,21 @@ const SearchComponent = () => {
     }
   };
 
-  const handleInput = (event) => {
-    if (event.key === "Enter") {
-      doSearch();
-    }
-
+  const handleInputChange = (event: any) => {
     setSearchForm((prev) => {
       return {
         ...prev,
         [event.target.name]: event.target.value,
       };
     });
+  };
+
+  const handleKeyDown = (event: any) => {
+    console.log(event);
+    if (event.key === "Enter") {
+      doSearch();
+      return;
+    }
   };
 
   return (
@@ -69,7 +73,8 @@ const SearchComponent = () => {
         name="city"
         placeholder="Type to search for weather. Eg.: Singapore, Kuala Lumpur"
         value={searchForm.city}
-        onInput={(event) => handleInput(event)}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       ></input>
       <button className="btn btn-square" onClick={doSearch}>
         <SearchIcon></SearchIcon>

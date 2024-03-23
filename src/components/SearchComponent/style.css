@@ -5,10 +5,11 @@
 }
 
 .search-location-input {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(var(--backdrop-color), 0.2);
+  color: rgb(var(--font-color-primary));
   padding: 10px 20px;
   border: 0px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   width: auto;
   flex: 1 1 0%;
 }
