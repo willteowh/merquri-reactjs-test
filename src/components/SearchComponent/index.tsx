@@ -43,6 +43,9 @@ const SearchComponent = () => {
         place: { ...place },
         timestamp: new Date(),
       });
+
+      // empty search
+      setSearchForm(emptySearchForm);
     } catch (error) {
       console.error(error);
     }

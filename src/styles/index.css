@@ -16,14 +16,13 @@ body {
   --font-color-secondary: 102, 102, 102;
   --font-color-positive: 108, 64, 181;
 
-  margin: 0;
   font-family: "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 
   background: url("../assets/bg-light.png") center;
   transition: background-color 0.3s ease;
@@ -41,4 +40,11 @@ body.dark {
 
   background: url("../assets/bg-dark.png") center;
   color: #dadada;
+}
+
+#root {
+  width: 100%;
+  max-width: 900px;
+  margin: auto 0px;
+  padding: 2rem 1rem;
 }

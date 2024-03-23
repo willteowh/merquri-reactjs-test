@@ -13,7 +13,7 @@ const WeatherDisplay = () => {
 
   return (
     <div className="weather-container">
-      <div className="weather-figure">
+      <div className="weather-temperature">
         <h2 className="weather-title">Today's Weather</h2>
         <span className="big-temperature-display">
           {formatTemperature(weatherInfo?.main?.temp)}
@@ -29,17 +29,9 @@ const WeatherDisplay = () => {
         </span>
       </div>
       <div className="weather-figure-sub">
-        <div className="caption-mobile-stack font-color-secondary">
-          <span className="caption-item">
-            {timestamp && formatDatetime(timestamp)}
-          </span>
-          <span className="caption-item">
-            Humidity: {weatherInfo?.main?.humidity}%
-          </span>
-          <span className="caption-item">
-            {weatherInfo?.weather?.[0]?.main}
-          </span>
-        </div>
+        <span className="">{timestamp && formatDatetime(timestamp)}</span>
+        <span className="">Humidity: {weatherInfo?.main?.humidity}%</span>
+        <span className="">{weatherInfo?.weather?.[0]?.main}</span>
       </div>
     </div>
   );
