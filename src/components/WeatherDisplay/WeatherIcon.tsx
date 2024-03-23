@@ -1,5 +1,3 @@
-import React from "react";
-import CloudyIcon from "../../assets/cloudy.png";
 import HazeIcon from "../../assets/haze.png";
 import PartlyCloudyIcon from "../../assets/partlycloudy.png";
 import RainIcon from "../../assets/rain.png";
@@ -27,7 +25,6 @@ const WeatherIcon = ({ data }: WeatherIconProps) => {
     // PartlyCloudyIcon
     case "Clouds":
       Icon = PartlyCloudyIcon;
-      //   Icon = CloudyIcon;
       break;
 
     // Drizzle

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import imageSrc from "../../assets/sunny.png";
 
 export const WeatherContainer = styled.div`
   width: 100%;
