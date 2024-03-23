@@ -32,6 +32,10 @@ export const Button = styled.button`
   &:hover {
     filter: ${({ theme }) => theme.button.default.hoverFilter};
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 export const RoundedButton = styled(Button)`

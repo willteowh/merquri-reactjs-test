@@ -17,7 +17,7 @@ export const SearchInput = styled.input`
   flex: 1 1 0%;
 `;
 
-export const SearchButton = styled(Button)`
+export const StyledButton = styled(Button)`
   background-color: ${({ theme }) =>
     theme.mode === "light" ? "rgba(108, 64, 181, 1)" : "rgba(40, 18, 77, 1)"};
   border-color: ${({ theme }) =>

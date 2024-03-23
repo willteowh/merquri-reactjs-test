@@ -21,6 +21,7 @@ export const GlobalStyles = createGlobalStyle`
       display: flex;
       justify-content: center;
       min-height: 100vh;
+      margin: 0px;
       background: url(${({ theme }) => theme.backgroundImage}) center;
       background-size: auto;
   }

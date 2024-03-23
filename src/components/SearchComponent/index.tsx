@@ -1,41 +1,37 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../../App";
-import { GEO_API_URL } from "../../api";
-import SearchIcon from "@mui/icons-material/Search";
-import { SearchContainer, SearchInput, SearchButton } from "./styled";
-
-const emptySearchForm = {
-  city: "",
-  country: "",
-};
+import { fetchLocation } from "../../api";
+import { SearchContainer, SearchInput } from "./styled";
+import { SearchButton } from "./SearchButton";
 
 const SearchComponent = () => {
   const { setPlace, addRecentSearch } = useContext(AppContext);
-  const [searchForm, setSearchForm] = useState(emptySearchForm);
+  const [searchText, setSearchText] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
+  const [message, setMessage] = useState("");
 
   const doSearch = async () => {
-    console.log({ ...searchForm });
-
-    // validation
-    if (searchForm.city.trim() === "" && searchForm.city.trim() === "") {
+    // validation: searchText cannot be empty, or it can't be loading
+    if (searchText.trim() === "" || loading) {
       return;
     }
 
-    // fetch from api
+    setLoading(true); // Set loading state to true
+    setMessage("Searching...");
+
     try {
-      let response = await (
-        await fetch(`${GEO_API_URL}&q=${searchForm.city}`)
-      ).json();
+      // fetch from api
+      const response = await fetchLocation(searchText);
 
-      console.log(response);
-
+      // if no location is returned, exit
       if (response.length === 0) {
-        // TODO: if no result found for the city, display error message and return
+        setMessage("City/Country not found");
+        return;
       }
 
       const place = response[0];
 
-      // TODO: display Weather info
+      // display Weather info
       setPlace(place);
 
       // also, record Search History
@@ -44,20 +40,19 @@ const SearchComponent = () => {
         timestamp: new Date(),
       });
 
-      // empty search
-      setSearchForm(emptySearchForm);
+      // empty search and message
+      setSearchText("");
+      setMessage("");
     } catch (error) {
       console.error(error);
+      setMessage("Something went wrong.");
+    } finally {
+      setLoading(false); // Set loading state to false after search is done
     }
   };
 
   const handleInputChange = (event: any) => {
-    setSearchForm((prev) => {
-      return {
-        ...prev,
-        [event.target.name]: event.target.value,
-      };
-    });
+    setSearchText(event.target.value);
   };
 
   const handleKeyDown = (event: any) => {
@@ -68,18 +63,19 @@ const SearchComponent = () => {
   };
 
   return (
-    <SearchContainer>
-      <SearchInput
-        name="city"
-        placeholder="Search for a location"
-        value={searchForm.city}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-      ></SearchInput>
-      <SearchButton onClick={doSearch}>
-        <SearchIcon></SearchIcon>
-      </SearchButton>
-    </SearchContainer>
+    <>
+      <SearchContainer>
+        <SearchInput
+          name="searchText"
+          placeholder="Search for a location"
+          value={searchText}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        ></SearchInput>
+        <SearchButton onClick={doSearch} isSearching={loading} />
+      </SearchContainer>
+      {message && <p style={{ paddingLeft: "20px" }}>{message}</p>}
+    </>
   );
 };
 

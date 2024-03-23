@@ -9,8 +9,8 @@ import { GlobalStyles } from "./app.styled";
 import { darkTheme, lightTheme } from "./theme";
 import { StyledDisplay } from "./styled/Container.styled";
 
-import { WEATHER_API_URL } from "./api";
-import { searchQueryType, searchResultType, placeType } from "./api/types";
+import { fetchWeather } from "./api";
+import { searchQueryType, searchResultType, placeType } from "./types";
 
 const MAX_HISTORY_LENGTH = 7;
 
@@ -59,20 +59,13 @@ function App() {
     setRecentSearches(updatedList);
   };
 
-  const fetchWeather = async (location: placeType) => {
-    console.log("fetchWeather");
+  const searchWeather = async (location: placeType) => {
+    console.log("searchWeather");
     console.log(location);
 
     // TODO: fetch from api
     try {
-      let response = await (
-        await fetch(
-          `${WEATHER_API_URL}&lat=${location.lat}&lon=${location.lon}&units=metric`
-        )
-      ).json();
-
-      console.log(response);
-
+      const response = await fetchWeather(location);
       const foundWeatherInfo: searchResultType = {
         place: { ...location },
         weatherInfo: { ...response },
@@ -88,7 +81,7 @@ function App() {
 
   useEffect(() => {
     if (place != null) {
-      fetchWeather(place);
+      searchWeather(place);
     }
   }, [place]);
 
