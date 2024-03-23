@@ -69,7 +69,7 @@ const SearchComponent = () => {
       <SearchContainer>
         <SearchInput
           name="searchText"
-          placeholder="Search for a location"
+          placeholder="Search by city/country. Eg.: Osaka, Zurich"
           value={searchText}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}

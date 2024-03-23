@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./app.styled";
+import "./index.css";
+import { GlobalStyles } from "./styled/app.styled";
 import { darkTheme, lightTheme } from "./theme";
 import { AppProvider } from "./AppProvider";
 import ThemeSwitcher from "./components/ThemeSwitcher";

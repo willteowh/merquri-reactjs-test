@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { Theme } from "./theme";
+import { Theme } from "../theme";
 
 declare module "styled-components" {
   /* tslint:disable */
@@ -7,8 +7,6 @@ declare module "styled-components" {
 }
 
 export const GlobalStyles = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-
   html {
       font-size: 16px;
       font-family: "Noto Sans", sans-serif;
