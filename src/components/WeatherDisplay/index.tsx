@@ -14,6 +14,7 @@ const WeatherDisplay = () => {
   const { searchResult } = useContext(AppContext);
   const { place, weatherInfo, timestamp } = searchResult ?? {};
 
+  //   util
   const formatTemperature = (temp?: number) => `${Math.round(temp ?? 0)}`;
   const formatDatetime = (dateObject: Date) =>
     format(dateObject, "dd-MM-yyyy hh:mmaaa");

@@ -19,9 +19,8 @@ const HistoryRow = ({ data, index }: HistoryRowProps) => {
 
   const handleSearchAgain = useCallback(
     () => {
-      console.log("handleSearchAgain");
       const { place } = data;
-      console.log(place);
+      //  setPlace to trigger Search
       setPlace(place);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +28,6 @@ const HistoryRow = ({ data, index }: HistoryRowProps) => {
   );
 
   const handleDelete = () => {
-    console.log("handleDelete");
     const updatedSearches: searchQueryType[] = recentSearches.filter(
       (row) => row.id !== index
     );

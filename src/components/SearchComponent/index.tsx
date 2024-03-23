@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { AppContext } from "../../AppProvider";
 import { fetchLocation } from "../../api";
 import { SearchContainer, SearchInput } from "./styled";
@@ -9,6 +9,7 @@ const SearchComponent = () => {
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
   const [message, setMessage] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const doSearch = async () => {
     // validation: searchText cannot be empty, or it can't be loading
@@ -29,9 +30,9 @@ const SearchComponent = () => {
         return;
       }
 
+      // success
+      // setPlace to load Weather based on place
       const place = response[0];
-
-      // display Weather info
       setPlace(place);
 
       // also, record Search History
@@ -42,9 +43,10 @@ const SearchComponent = () => {
         place: { ...place },
       });
 
-      // empty search and message
+      // lastly, clear up current UI
       setSearchText("");
       setMessage("");
+      inputRef.current?.blur();
     } catch (error) {
       console.error(error);
       setMessage("Something went wrong.");
@@ -68,6 +70,7 @@ const SearchComponent = () => {
     <>
       <SearchContainer>
         <SearchInput
+          ref={inputRef}
           name="searchText"
           placeholder="Search by city/country. Eg.: Osaka, Zurich"
           value={searchText}
