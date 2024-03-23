@@ -10,6 +10,8 @@ import {
   SearchHistoryContainer,
   ItemRow,
   ItemLabel,
+  Text,
+  Caption,
   ItemAction,
 } from "./styled";
 
@@ -38,12 +40,12 @@ const SearchHistory = () => {
         return (
           <ItemRow key={index}>
             <ItemLabel>
-              <span>
+              <Text>
                 {history.place.name}, {history.place.country}
-              </span>
-              <span className="font-smaller">
+              </Text>
+              <Caption>
                 {format(history.timestamp, "dd-MM-yyyy hh:mmaaa")}
-              </span>
+              </Caption>
             </ItemLabel>
             <ItemAction>
               <RoundedButton onClick={() => handleSearchAgain(history)}>

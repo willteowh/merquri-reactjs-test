@@ -19,16 +19,18 @@ export const WeatherContainer = styled.div`
     height: 250px; /* Set the height of the pseudo-element */
     background-size: contain; /* Scale the background image to fit the dimensions of the pseudo-element */
     background-repeat: no-repeat; /* Prevent the background image from repeating */
-  }
 
-  @media only screen and (max-width: 600px) {
-    top: -45%; /* Position at the top of the container */
-    right: -10%;
-  }
+    @media only screen and (max-width: 600px) {
+      width: 200px;
+      height: 200px;
+      top: -45%; /* Position at the top of the container */
+      right: -10%;
+    }
 
-  @media only screen and (max-width: 400px) {
-    width: 150px;
-    height: 150px;
+    @media only screen and (max-width: 400px) {
+      width: 150px;
+      height: 150px;
+    }
   }
 `;
 

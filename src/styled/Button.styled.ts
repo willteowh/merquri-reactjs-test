@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  box-shadow: 0px 4px 12px 0px #0000001a;
+  box-shadow: 0px 8px 12px 0px #0000001a;
   text-align: center;
   display: inline-flex;
   align-items: center;
@@ -19,10 +19,18 @@ export const Button = styled.button`
   cursor: pointer;
   margin-left: 8px;
 
-  border-radius: 0.5rem;
+  border: 2px solid white;
+  border-radius: 00.875rem;
+  transition: filter 100ms linear, background-color 100ms ease-out;
+  -webkit-transition: -webkit-filter 100ms linear,
+    -webkit-background-color 100ms ease-out;
+
+  color: ${({ theme }) => theme.button.default.color};
+  background-color: ${({ theme }) => theme.button.default.bgColor};
+  opacity: ${({ theme }) => theme.button.default.opacity};
 
   &:hover {
-    background-color: ${({ theme }) => theme.shadedColor3};
+    filter: ${({ theme }) => theme.button.default.hoverFilter};
   }
 `;
 

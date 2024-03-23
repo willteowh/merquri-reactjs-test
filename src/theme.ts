@@ -2,6 +2,7 @@ import lightBg from "./assets/bg-light.png";
 import darkBg from "./assets/bg-dark.png";
 
 export interface Theme {
+  mode: string;
   backgroundImage: string;
   backgroundGradient: {
     color1: string;
@@ -17,9 +18,18 @@ export interface Theme {
     secondary: string;
     positive: string;
   };
+  button: {
+    default: {
+      hoverFilter?: string;
+      color?: string;
+      bgColor?: string;
+      opacity?: number;
+    };
+  };
 }
 
 export const lightTheme: Theme = {
+  mode: "light",
   backgroundImage: lightBg,
   //   TODO: TO remove
   backgroundGradient: {
@@ -36,9 +46,17 @@ export const lightTheme: Theme = {
     secondary: "rgb(102, 102, 102)",
     positive: "rgb(108, 64, 181)",
   },
+  button: {
+    default: {
+      hoverFilter: "brightness(90%)",
+      bgColor: "white",
+      opacity: 1,
+    },
+  },
 };
 
 export const darkTheme: Theme = {
+  mode: "dark",
   backgroundImage: darkBg,
   backgroundGradient: {
     color1: "#010101",
@@ -53,5 +71,13 @@ export const darkTheme: Theme = {
     primary: "#dadada",
     secondary: "#ffffff",
     positive: "#ffffff",
+  },
+  button: {
+    default: {
+      hoverFilter: "brightness(50%)",
+      color: "white",
+      bgColor: "transparent",
+      opacity: 0.5,
+    },
   },
 };

@@ -33,6 +33,17 @@ export const ItemLabel = styled.div`
   }
 `;
 
+export const Text = styled.span`
+  line-height: 1.5;
+`;
+
+export const Caption = styled.span`
+  font-size: smaller;
+
+  /* in mobile */
+  opacity: ${({ theme }) => (theme.mode === "light" ? 1 : 0.5)};
+`;
+
 export const ItemAction = styled.div`
   display: flex;
   align-items: center;

@@ -2,8 +2,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "../../App";
 import { GEO_API_URL } from "../../api";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "../../styled/Button.styled";
-import { SearchContainer, SearchInput } from "./styled";
+import { SearchContainer, SearchInput, SearchButton } from "./styled";
 
 const emptySearchForm = {
   city: "",
@@ -72,14 +71,14 @@ const SearchComponent = () => {
     <SearchContainer>
       <SearchInput
         name="city"
-        placeholder="Type to search for weather. Eg.: Singapore, Kuala Lumpur"
+        placeholder="Search for a location"
         value={searchForm.city}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       ></SearchInput>
-      <Button onClick={doSearch}>
+      <SearchButton onClick={doSearch}>
         <SearchIcon></SearchIcon>
-      </Button>
+      </SearchButton>
     </SearchContainer>
   );
 };

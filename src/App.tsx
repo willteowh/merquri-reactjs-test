@@ -36,6 +36,11 @@ export const AppContext = createContext<AppContextType>({
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDarkMode(darkMode);
+  }, []);
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
