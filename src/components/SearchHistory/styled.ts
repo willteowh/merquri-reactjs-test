@@ -7,7 +7,7 @@ export const SearchHistoryContainer = styled.div`
 `;
 
 export const ItemRow = styled.div`
-  background-color: ${({ theme }) => theme.shadedColor4};
+  background-color: ${({ theme }) => theme.shadedColor};
   border-radius: 16px;
   padding: 10px 20px;
   margin-bottom: 15px;

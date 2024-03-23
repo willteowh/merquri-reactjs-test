@@ -9,17 +9,9 @@ type Props = {
 };
 
 const ThemeSwitcher = ({ darkMode, toggleDarkMode }: Props) => {
-  // TODO: add localstorage to persists state
-  // TODO: add prefers-color-scheme during initialization
-
-  // TODO: there's still white screen even using useLayoutEffect
   return (
     <FloatingContainer>
-      <RoundedButton
-        //   TODO
-        // color={darkMode ? "primary" : "secondary"}
-        onClick={toggleDarkMode}
-      >
+      <RoundedButton onClick={toggleDarkMode}>
         {darkMode ? (
           <DarkModeTwoToneIcon></DarkModeTwoToneIcon>
         ) : (

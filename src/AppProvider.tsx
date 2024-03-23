@@ -22,8 +22,6 @@ export const AppContext = createContext<AppContextType>({
   addRecentSearch: () => {},
 });
 
-const MAX_HISTORY_LENGTH = 7;
-
 export const AppProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -32,6 +30,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     null
   );
   const [recentSearches, setRecentSearches] = useState<searchQueryType[]>([]);
+  const MAX_HISTORY_LENGTH = 7;
 
   const addRecentSearch = (searchQuery: searchQueryType) => {
     const updatedList = [searchQuery, ...recentSearches].slice(

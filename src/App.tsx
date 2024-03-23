@@ -8,16 +8,18 @@ import ThemeSwitcher from "./components/ThemeSwitcher";
 import MainPage from "./MainPage";
 
 function App() {
+  // theme - ligh/dark mode
   const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setDarkMode(darkMode);
-  }, []);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+
+  // on first load
+  useEffect(() => {
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDarkMode(darkMode);
+  }, []);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
